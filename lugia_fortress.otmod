@@ -1,0 +1,11 @@
+Module
+  name: game_lugia_fortress
+  description: Lugia Fortress Painels
+  author: iuniX
+  website: www.otclient.info
+  autoload-priority: 1002
+  autoload: true
+  sandboxed: true
+  scripts: [ lugia_fortress ]
+  @onLoad: init()
+  @onUnload: terminate()

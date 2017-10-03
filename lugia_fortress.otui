@@ -1,0 +1,144 @@
+MainWindow
+  id: passwordWindow
+  focusable: true
+  size: 183 320
+  image-source: images/background.png
+  visible: false
+  @onEscape: hide()
+
+  Button
+    id: ButtonClear
+    anchors.left: parent.left 
+    anchors.bottom: parent.bottom
+    margin-left: 28
+    image-source: images/clear.png
+    size: 48 44
+    image-clip: 0 0 48 44
+    @onClick: onClickButton("clear")
+
+  Button
+    id: ButtonOk
+    anchors.left: prev.right 
+    anchors.bottom: parent.bottom
+    margin-left: 5
+    image-source: images/ok.png
+    size: 48 44
+    image-clip: 0 0 48 44
+    @onClick: onClickButton("ok")
+
+
+  Button
+    id: ButtonSeven
+    anchors.left: parent.left 
+    anchors.top: parent.top
+    margin-left: 3
+    margin-top: 3
+    image-source: images/7.png
+    size: 48 44
+    image-clip: 0 0 48 44
+    @onClick: onClickButton(7)
+
+  Button
+    id: ButtonEight
+    anchors.left: prev.right 
+    anchors.top: parent.top
+    margin-left: 3
+    margin-top: 3
+    image-source: images/8.png
+    size: 48 44
+    image-clip: 0 0 48 44
+    @onClick: onClickButton(8)
+
+  Button
+    id: ButtonNine
+    anchors.left: prev.right 
+    anchors.top: parent.top
+    margin-left: 3
+    margin-top: 3
+    image-source: images/9.png
+    size: 48 44
+    image-clip: 0 0 48 44
+    @onClick: onClickButton(9)
+
+  Button
+    id: ButtonFour
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    margin-left: 3
+    margin-top: 3
+    image-source: images/4.png
+    size: 48 44
+    image-clip: 0 0 48 44
+    @onClick: onClickButton(4)
+
+  Button
+    id: ButtonFive
+    anchors.left: prev.right 
+    anchors.top: parent.top
+    margin-left: 3
+    margin-top: 49
+    image-source: images/5.png
+    size: 48 44
+    image-clip: 0 0 48 44
+    @onClick: onClickButton(5)
+
+  Button
+    id: ButtonSix
+    anchors.left: prev.right 
+    anchors.top: parent.top
+    margin-left: 3
+    margin-top: 49
+    image-source: images/6.png
+    size: 48 44
+    image-clip: 0 0 48 44
+    @onClick: onClickButton(6)
+
+  Button
+    id: ButtonOne
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    margin-left: 3
+    margin-top: 3
+    image-source: images/1.png
+    size: 48 44
+    image-clip: 0 0 48 44
+    @onClick: onClickButton(1)
+
+  Button
+    id: ButtonTwo
+    anchors.left: prev.right
+    anchors.top: parent.top
+    margin-left: 3
+    margin-top: 95
+    image-source: images/2.png
+    size: 48 44
+    image-clip: 0 0 48 44
+    @onClick: onClickButton(2)
+
+  Button
+    id: ButtonThree
+    anchors.left: prev.right
+    anchors.top: parent.top
+    margin-left: 3
+    margin-top: 95
+    image-source: images/3.png
+    size: 48 44
+    image-clip: 0 0 48 44
+    @onClick: onClickButton(3)
+
+  UIWidget
+    id: panel
+    size: 154 60
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    margin-top: 15
+    padding-left: 3
+    image-source: images/painel.png
+
+  UIWidget
+    id: dataPanel
+    image-size: 48 44
+    image-smooth: true
+    image-fixed-ratio: true
+    anchors.top: parent.top
+    anchors.left: parent.left
