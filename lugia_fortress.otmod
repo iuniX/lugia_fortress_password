@@ -1,6 +1,6 @@
 Module
   name: game_lugia_fortress
-  description: Lugia Fortress Painels
+  description: Lugia Fortress Panels
   author: iuniX
   website: www.otclient.info
   autoload-priority: 1002

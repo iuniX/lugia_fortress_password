@@ -12,18 +12,6 @@ function init()
 end
 
 function onClickButton(button)
-  if button == "ok" then
-    hide()
-    g_game.sendExtended(lugiaFortressOPCode, p_password)
-    p_password = {}
-    return
-  end
-
-  if button == "clear" then
-    p_password = {}
-    --_addNumberToPanel("reset")
-  end
-
   if #p_password < 4 then
     table.insert(p_password, button)
     --_addNumberToPanel(button)
@@ -51,4 +39,15 @@ end
 
 function _addNumberToPanel(number)
 
+end
+
+function onClickOkButton()
+  hide()
+  g_game.sendExtended(lugiaFortressOPCode, p_password)
+  p_password = {}
+end
+
+function onClickClearButton()
+  p_password = {}
+  --_addNumberToPanel("reset")
 end

@@ -1,3 +1,7 @@
+NumberButton < UIButton
+    size: 48 44
+    image-clip: 0 0 48 44
+
 MainWindow
   id: passwordWindow
   focusable: true
@@ -6,124 +10,90 @@ MainWindow
   visible: false
   @onEscape: hide()
 
-  Button
-    id: ButtonClear
+  NumberButton
     anchors.left: parent.left 
     anchors.bottom: parent.bottom
     margin-left: 28
     image-source: images/clear.png
-    size: 48 44
-    image-clip: 0 0 48 44
-    @onClick: onClickButton("clear")
+    @onClick: onClickClearButton()
 
-  Button
-    id: ButtonOk
+  NumberButton
     anchors.left: prev.right 
     anchors.bottom: parent.bottom
     margin-left: 5
     image-source: images/ok.png
-    size: 48 44
-    image-clip: 0 0 48 44
-    @onClick: onClickButton("ok")
+    @onClick: onClickOkButton()
 
-
-  Button
-    id: ButtonSeven
+  NumberButton
     anchors.left: parent.left 
     anchors.top: parent.top
     margin-left: 3
     margin-top: 3
     image-source: images/7.png
-    size: 48 44
-    image-clip: 0 0 48 44
     @onClick: onClickButton(7)
 
-  Button
-    id: ButtonEight
+  NumberButton
     anchors.left: prev.right 
     anchors.top: parent.top
     margin-left: 3
     margin-top: 3
     image-source: images/8.png
-    size: 48 44
-    image-clip: 0 0 48 44
     @onClick: onClickButton(8)
 
-  Button
-    id: ButtonNine
+  NumberButton
     anchors.left: prev.right 
     anchors.top: parent.top
     margin-left: 3
     margin-top: 3
     image-source: images/9.png
-    size: 48 44
-    image-clip: 0 0 48 44
     @onClick: onClickButton(9)
 
-  Button
-    id: ButtonFour
+  NumberButton
     anchors.left: parent.left
     anchors.top: prev.bottom
     margin-left: 3
     margin-top: 3
     image-source: images/4.png
-    size: 48 44
-    image-clip: 0 0 48 44
     @onClick: onClickButton(4)
 
-  Button
-    id: ButtonFive
+  NumberButton
     anchors.left: prev.right 
     anchors.top: parent.top
     margin-left: 3
     margin-top: 49
     image-source: images/5.png
-    size: 48 44
-    image-clip: 0 0 48 44
     @onClick: onClickButton(5)
 
-  Button
-    id: ButtonSix
+  NumberButton
     anchors.left: prev.right 
     anchors.top: parent.top
     margin-left: 3
     margin-top: 49
     image-source: images/6.png
-    size: 48 44
-    image-clip: 0 0 48 44
     @onClick: onClickButton(6)
 
-  Button
-    id: ButtonOne
+  NumberButton
     anchors.left: parent.left
     anchors.top: prev.bottom
     margin-left: 3
     margin-top: 3
     image-source: images/1.png
-    size: 48 44
-    image-clip: 0 0 48 44
     @onClick: onClickButton(1)
 
-  Button
-    id: ButtonTwo
+  NumberButton
     anchors.left: prev.right
     anchors.top: parent.top
     margin-left: 3
     margin-top: 95
     image-source: images/2.png
-    size: 48 44
-    image-clip: 0 0 48 44
     @onClick: onClickButton(2)
 
-  Button
-    id: ButtonThree
+  NumberButton
     anchors.left: prev.right
     anchors.top: parent.top
     margin-left: 3
     margin-top: 95
     image-source: images/3.png
-    size: 48 44
-    image-clip: 0 0 48 44
     @onClick: onClickButton(3)
 
   UIWidget
