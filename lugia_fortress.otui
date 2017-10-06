@@ -1,6 +1,6 @@
 NumberButton < UIButton
-    size: 48 44
-    image-clip: 0 0 48 44
+  size: 48 44
+  image-clip: 0 0 48 44
 
 MainWindow
   id: passwordWindow
