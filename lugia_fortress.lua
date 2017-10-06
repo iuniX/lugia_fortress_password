@@ -1,29 +1,19 @@
-local lugiaFortressOPCode = 147
+local p_lugiaFortressOPCode = 147
 local p_password = {}
-local passwordCharsCount = 4
-local _onRecieveOpCode
+local p_passwordCharsCount = 4
 local p_passwordWindow
-local p_panel
+local p_passwordPanel
+
+local _onRecieveOpCode
 
 function init()
   p_passwordWindow = g_ui.loadUI('lugia_fortress', rootWidget)
-  g_game.handleExtended(lugiaFortressOPCode, _onRecieveOpCode)
-  p_panel = p_passwordWindow:getChildById('dataPanel')
-end
-
-function onClickButton(button)
-  if #p_password < 4 then
-    table.insert(p_password, button)
-    --_addNumberToPanel(button)
-  end
-end
-
-function _onRecieveOpCode(t)
-  show()
+  p_passwordPanel = p_passwordWindow:getChildById('panel')
+  g_game.handleExtended(p_lugiaFortressOPCode, _onRecieveOpCode)
 end
 
 function terminate()
-  g_game.unhandleExtended(lugiaFortressOPCode, receiveData)
+  g_game.unhandleExtended(p_lugiaFortressOPCode, receiveData)
   p_passwordWindow:destroy()
 end
 
@@ -37,17 +27,28 @@ function hide()
   p_passwordWindow:hide()
 end
 
-function _addNumberToPanel(number)
+function _onRecieveOpCode(t)
+  resetPassword()
+  show()
+end
 
+function onClickButton(button)
+  if #p_password < p_passwordCharsCount then
+    table.insert(p_password, button)
+    updatePasswordText()
+  end
 end
 
 function onClickOkButton()
   hide()
-  g_game.sendExtended(lugiaFortressOPCode, p_password)
-  p_password = {}
+  g_game.sendExtended(p_lugiaFortressOPCode, p_password)
 end
 
-function onClickClearButton()
+function updatePasswordText()
+  p_passwordPanel:setText(string.rep('* ', #p_password) .. string.rep('_', p_passwordCharsCount - #p_password))
+end
+
+function resetPassword()
   p_password = {}
-  --_addNumberToPanel("reset")
+  updatePasswordText()
 end

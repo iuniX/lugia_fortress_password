@@ -1,12 +1,18 @@
 NumberButton < UIButton
   size: 48 44
   image-clip: 0 0 48 44
+  image-color: #ffffffaa
+  image-offset: 0 0
+  $hover:
+    image-color: white
+  $pressed:
+    image-offset: 1 1
 
 MainWindow
   id: passwordWindow
   focusable: true
-  size: 183 320
-  image-source: images/background.png
+  size: 183 290
+  image-source: images/background
   visible: false
   @onEscape: hide()
 
@@ -14,14 +20,14 @@ MainWindow
     anchors.left: parent.left 
     anchors.bottom: parent.bottom
     margin-left: 28
-    image-source: images/clear.png
-    @onClick: onClickClearButton()
+    image-source: images/clear
+    @onClick: resetPassword()
 
   NumberButton
     anchors.left: prev.right 
     anchors.bottom: parent.bottom
     margin-left: 5
-    image-source: images/ok.png
+    image-source: images/ok
     @onClick: onClickOkButton()
 
   NumberButton
@@ -29,7 +35,7 @@ MainWindow
     anchors.top: parent.top
     margin-left: 3
     margin-top: 3
-    image-source: images/7.png
+    image-source: images/7
     @onClick: onClickButton(7)
 
   NumberButton
@@ -37,7 +43,7 @@ MainWindow
     anchors.top: parent.top
     margin-left: 3
     margin-top: 3
-    image-source: images/8.png
+    image-source: images/8
     @onClick: onClickButton(8)
 
   NumberButton
@@ -45,7 +51,7 @@ MainWindow
     anchors.top: parent.top
     margin-left: 3
     margin-top: 3
-    image-source: images/9.png
+    image-source: images/9
     @onClick: onClickButton(9)
 
   NumberButton
@@ -53,7 +59,7 @@ MainWindow
     anchors.top: prev.bottom
     margin-left: 3
     margin-top: 3
-    image-source: images/4.png
+    image-source: images/4
     @onClick: onClickButton(4)
 
   NumberButton
@@ -61,7 +67,7 @@ MainWindow
     anchors.top: parent.top
     margin-left: 3
     margin-top: 49
-    image-source: images/5.png
+    image-source: images/5
     @onClick: onClickButton(5)
 
   NumberButton
@@ -69,7 +75,7 @@ MainWindow
     anchors.top: parent.top
     margin-left: 3
     margin-top: 49
-    image-source: images/6.png
+    image-source: images/6
     @onClick: onClickButton(6)
 
   NumberButton
@@ -77,7 +83,7 @@ MainWindow
     anchors.top: prev.bottom
     margin-left: 3
     margin-top: 3
-    image-source: images/1.png
+    image-source: images/1
     @onClick: onClickButton(1)
 
   NumberButton
@@ -85,7 +91,7 @@ MainWindow
     anchors.top: parent.top
     margin-left: 3
     margin-top: 95
-    image-source: images/2.png
+    image-source: images/2
     @onClick: onClickButton(2)
 
   NumberButton
@@ -93,22 +99,15 @@ MainWindow
     anchors.top: parent.top
     margin-left: 3
     margin-top: 95
-    image-source: images/3.png
+    image-source: images/3
     @onClick: onClickButton(3)
 
   UIWidget
     id: panel
-    size: 154 60
+    font: exo-16px-ultra-bold-italic
+    size: 154 30
     anchors.top: prev.bottom
     anchors.left: parent.left
     margin-top: 15
     padding-left: 3
-    image-source: images/painel.png
-
-  UIWidget
-    id: dataPanel
-    image-size: 48 44
-    image-smooth: true
-    image-fixed-ratio: true
-    anchors.top: parent.top
-    anchors.left: parent.left
+    image-source: images/panel
