@@ -4,22 +4,20 @@ local p_passwordCharsCount = 4
 local p_passwordWindow
 local p_passwordPanel
 local _onRecieveOpCode
+local p_removeRedScreen
+local _destroyRedScreen
 
 function init()
   p_passwordWindow = g_ui.loadUI('lugia_fortress', rootWidget)
   p_passwordPanel = p_passwordWindow:getChildById('panel')
   g_game.handleExtended(p_lugiaFortressOPCode, _onRecieveOpCode)
+  connect(g_game, { onGameEnd = _destroyRedScreen()})
 end
 
 function terminate()
   g_game.unhandleExtended(p_lugiaFortressOPCode, receiveData)
   p_passwordWindow:destroy()
-
-  local panel = modules.game_interface.getMapPanel()
-  local widget = panel:getChildById('redscreen')
-  if widget then
-    widget:destroy()
-  end
+  _destroyRedScreen()
 end
 
 function show()
@@ -32,25 +30,34 @@ function hide()
   p_passwordWindow:hide()
 end
 
-function _onRecieveOpCode(t)
-  if t == 1 then
+function _onRecieveOpCode(params)
+  if params.action == "password" then
     resetPassword()
     show()
     return
   end
   local panel = modules.game_interface.getMapPanel()
 
-  if not t then
-    local widget = panel:getChildById('redscreen')
-    if widget then
-      g_effects.stopBlink(widget)
-      widget:destroy()
-    end
+  if params.action == "alarm-stop" then
+    _destroyRedScreen()
     return
   end
 
-  local redscreen = g_ui.createWidget('RedScreen', panel)
-  _turnRedScreenOn(redscreen, t.duration, t.interval)
+  if params.action == "alarm-start" then
+    local redscreen = g_ui.createWidget('RedScreen', panel)
+    _turnRedScreenOn(redscreen, params.duration, params.interval)
+  end
+end
+
+function _destroyRedScreen()
+  local panel = modules.game_interface.getMapPanel()
+  local widget = panel:getChildById('redscreen')
+  if widget then
+    widget:destroy()
+  end
+  if p_removeRedScreen then
+    p_removeRedScreen:cancel()
+  end
 end
 
 function onClickButton(button)
@@ -81,7 +88,7 @@ function _turnRedScreenOn(widget, duration, interval)
   g_effects.startBlink(widget, duration, interval)
 
   if duration > 0 then
-    scheduleEvent(function()
+    p_removeRedScreen = scheduleEvent(function()
       g_effects.stopBlink(widget)
       widget:destroy()
     end, duration)
