@@ -3,7 +3,6 @@ local p_password = {}
 local p_passwordCharsCount = 4
 local p_passwordWindow
 local p_passwordPanel
-
 local _onRecieveOpCode
 
 function init()
@@ -15,6 +14,12 @@ end
 function terminate()
   g_game.unhandleExtended(p_lugiaFortressOPCode, receiveData)
   p_passwordWindow:destroy()
+
+  local panel = modules.game_interface.getMapPanel()
+  local widget = panel:getChildById('redscreen')
+  if widget then
+    widget:destroy()
+  end
 end
 
 function show()
@@ -28,8 +33,24 @@ function hide()
 end
 
 function _onRecieveOpCode(t)
-  resetPassword()
-  show()
+  if t == 1 then
+    resetPassword()
+    show()
+    return
+  end
+  local panel = modules.game_interface.getMapPanel()
+
+  if not t then
+    local widget = panel:getChildById('redscreen')
+    if widget then
+      g_effects.stopBlink(widget)
+      widget:destroy()
+    end
+    return
+  end
+
+  local redscreen = g_ui.createWidget('RedScreen', panel)
+  _turnRedScreenOn(redscreen, t.duration, t.interval)
 end
 
 function onClickButton(button)
@@ -51,4 +72,18 @@ end
 function resetPassword()
   p_password = {}
   updatePasswordText()
+end
+
+function _turnRedScreenOn(widget, duration, interval)
+  duration = duration or 0
+  interval = interval or 500
+
+  g_effects.startBlink(widget, duration, interval)
+
+  if duration > 0 then
+    scheduleEvent(function()
+      g_effects.stopBlink(widget)
+      widget:destroy()
+    end, duration)
+  end
 end

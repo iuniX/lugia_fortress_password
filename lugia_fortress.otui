@@ -8,6 +8,15 @@ NumberButton < UIButton
   $pressed:
     image-offset: 1 1
 
+RedScreen < UIWidget
+  id: redscreen
+  anchors.fill: parent
+  background-color: #55000088
+  visible: true
+  phantom: true
+  $on:
+    visible: false
+
 MainWindow
   id: passwordWindow
   focusable: true
