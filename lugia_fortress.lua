@@ -11,13 +11,14 @@ function init()
   p_passwordWindow = g_ui.loadUI('lugia_fortress', rootWidget)
   p_passwordPanel = p_passwordWindow:getChildById('panel')
   g_game.handleExtended(p_lugiaFortressOPCode, _onRecieveOpCode)
-  connect(g_game, { onGameEnd = _destroyRedScreen()})
+  connect(g_game, { onGameEnd = _destroyRedScreen })  
 end
 
 function terminate()
   g_game.unhandleExtended(p_lugiaFortressOPCode, receiveData)
   p_passwordWindow:destroy()
   _destroyRedScreen()
+  disconnect(g_game, { onGameEnd = _destroyRedScreen })
 end
 
 function show()
@@ -34,16 +35,12 @@ function _onRecieveOpCode(params)
   if params.action == "password" then
     resetPassword()
     show()
-    return
-  end
-  local panel = modules.game_interface.getMapPanel()
 
-  if params.action == "alarm-stop" then
+  elseif params.action == "alarm-stop" then
     _destroyRedScreen()
-    return
-  end
 
-  if params.action == "alarm-start" then
+  elseif params.action == "alarm-start" then
+    local panel = modules.game_interface.getMapPanel()
     local redscreen = g_ui.createWidget('RedScreen', panel)
     _turnRedScreenOn(redscreen, params.duration, params.interval)
   end
@@ -89,7 +86,6 @@ function _turnRedScreenOn(widget, duration, interval)
 
   if duration > 0 then
     p_removeRedScreen = scheduleEvent(function()
-      g_effects.stopBlink(widget)
       widget:destroy()
     end, duration)
   end
